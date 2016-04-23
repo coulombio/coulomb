@@ -4,7 +4,10 @@ import math
 class g_Field(Vector):
 
     def __init__(self, p,x,y):
-        Vector.__init__(self, x, y)
+        Vector.__init__(self)
+        self.x = x
+        self.y = y
+        self.Coordinate = Coordinate(x,y)
         self.units = "Newtons per Kilogram"
 
 
@@ -16,7 +19,7 @@ class g_Field(Vector):
 
         for point in Points:
             if (self.x != point.x or self.y != point.y):
-                 E = -6.674 * 10**-11 * point.mass/((self.x - point.x)**2 + (self.y - point.y)**2 )
+                 E = -6.674 * 10**-11 * point.mass/self.Coordinate.getDistance(point)**2
 
             if (self.x != point.x or self.y != point.y):
              self.i = self.i + ((E * (self.x - point.x) / (((self.x - point.x) ** 2 + (self.y - point.y) ** 2)) ** 0.5))
@@ -37,4 +40,4 @@ class g_Field(Vector):
                 self.Potential = self.Potential + v
 
     def __str__(self):
-        return "The gravitational field" + Vector.__str__(self)
+        return "The Gravitational field at " + str(self.Coordinate) + " is " + Vector.__str__(self)

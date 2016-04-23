@@ -4,7 +4,10 @@ import math
 class E_Field(Vector):
 
     def __init__(self, p,x,y):
-        Vector.__init__(self, x, y)
+        Vector.__init__(self)
+        self.x = x
+        self.y = y
+        self.Coordinate = Coordinate(x,y)
         self.units = "Newtons per Coloumb"
 
 
@@ -36,4 +39,4 @@ class E_Field(Vector):
                 self.Potential = self.Potential + v
 
     def __str__(self):
-        return "The Electric field" + Vector.__str__(self)
+        return "The Electric field at " + str(self.Coordinate) + " is " + Vector.__str__(self)
